@@ -27,9 +27,9 @@ Replace `{YOUR_OPENAI_API_KEY}` with your actual OpenAI API key. The `--models` 
 
 - `main.py`: The main Python script that orchestrates the text extraction from the PDF and the generation of responses using the OpenAI model.
 - `utils.py`: Contains utility functions for text extraction from the PDF.
+- `queries.py`: contains functions and classes for generating queries to the OpenAI API
 - `Dockerfile`: Defines the Docker image for this project.
 - `requirements.txt`: Lists the Python dependencies required by this project.
-
 
 ## Options
 
@@ -40,3 +40,9 @@ The `main.py` script in your application accepts several command-line arguments 
 2. `--dir`: This is an optional argument. If provided, it indicates that the input_path is a directory. If not provided, the script will assume that input_path is a single PDF file.
 
 3. `--models`: This is an optional argument. It allows you to specify one or more OpenAI models to use for generating responses. If more than one model is provided, we perform an ensemble model run where a GPT-4 model will evaluate the resulting responses. The models should be provided as a space-separated list. If not provided, the script will use the gpt-3.5-turbo model by default.
+
+
+## Future improvements
+
+1. Improve latency by using state-of-the-art quantized open-source LLMs.
+2. Use SOTA open source medical models to answer the questions evaluate the suggested treatment
