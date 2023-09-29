@@ -11,11 +11,15 @@ This project is a take-home challenge to produce answers from a medical record P
 
 1. Build the Docker image:
 
-```docker build -t cohelm_records .```
+```
+docker build -t cohelm_records .
+```
 
 2. Run the Docker container:
 
-```docker run -it --rm -v $(pwd):/app -e OPENAI_API_KEY=YOUR_OPENAI_API_KEY cohelm_records python main.py /app/dataset --dir```
+```
+docker run -it --rm -v $(pwd):/app -e OPENAI_API_KEY=YOUR_OPENAI_API_KEY cohelm_records python main.py /app/dataset --dir
+```
 
 Replace `{YOUR_OPENAI_API_KEY}` with your actual OpenAI API key. The `--models` argument is optional and defaults to `gpt-3.5-turbo` if not provided.
 
