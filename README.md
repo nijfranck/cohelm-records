@@ -1,6 +1,15 @@
 # cohelm-takehome
 
-This project is a take-home challenge to produce answers from a medical record PDF. It uses OpenAI's GPT models to generate responses based on the extracted text from the PDF.
+This project is designed to extract text from medical record PDFs and generate responses using OpenAI's GPT models. It's a part of a take-home challenge and serves as a proof-of-concept for the potential applications of AI in medical data processing.
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Command Line Options](#command-line-options)
+- [Future Improvements](#future-improvements)
 
 ## Prerequisites
 
@@ -9,15 +18,28 @@ This project is a take-home challenge to produce answers from a medical record P
 
 ## How to run
 
-1. Build the Docker image:
+1. Clone the repository:
 
+```bash
+git clone https://github.com/yourusername/cohelm-takehome.git
 ```
+
+2. Navigate to the project directory:
+
+```bash
+cd cohelm-takehome
+```
+
+
+3. Build the Docker image:
+
+```bash
 docker build -t cohelm_records .
 ```
 
-2. Run the Docker container:
+4. Run the Docker container:
 
-```
+```bash
 docker run -it --rm -v $(pwd):/app -e OPENAI_API_KEY=YOUR_OPENAI_API_KEY cohelm_records python main.py /app/dataset --dir
 ```
 
@@ -31,18 +53,22 @@ Replace `{YOUR_OPENAI_API_KEY}` with your actual OpenAI API key. The `--models` 
 - `Dockerfile`: Defines the Docker image for this project.
 - `requirements.txt`: Lists the Python dependencies required by this project.
 
-## Options
+## Command Line Options
 
-The `main.py` script in your application accepts several command-line arguments that allow you to customize its behavior:
+The `main.py` script accepts several command-line arguments:
 
-1. `input_path`: This is a positional argument, meaning it's required. You should provide the path to a PDF file or a directory of PDF files that you want to process.
+1. `input_path`: (Required) Path to a PDF file or a directory of PDF files.
+2. `--dir`: (Optional) Indicates that the `input_path` is a directory.
+3. `--models`: (Optional) Specifies one or more OpenAI models to use for generating responses. Defaults to `gpt-3.5-turbo`. If more than one models are provided, many outputs are generated and `gpt-4` uses those responses to generate the best answer.
 
-2. `--dir`: This is an optional argument. If provided, it indicates that the input_path is a directory. If not provided, the script will assume that input_path is a single PDF file.
+## Future Improvements
 
-3. `--models`: This is an optional argument. It allows you to specify one or more OpenAI models to use for generating responses. If more than one model is provided, we perform an ensemble model run where a GPT-4 model will evaluate the resulting responses. The models should be provided as a space-separated list. If not provided, the script will use the gpt-3.5-turbo model by default.
+1. **Performance Optimization**: Improve application latency by leveraging state-of-the-art quantized open-source Language Models (LLMs). This could significantly speed up the response time of the application.
 
+2. **Enhanced Medical Analysis**: Incorporate state-of-the-art (SOTA) open-source medical models to provide more accurate and comprehensive answers and evaluations of suggested treatments based on the extracted medical records.
 
-## Future improvements
+3. **API Development**: Develop an API endpoint using Flask. This would allow other applications or services to use the PDF extraction and response generation capabilities of this application.
 
-1. Improve latency by using state-of-the-art quantized open-source LLMs.
-2. Use SOTA open source medical models to answer the questions evaluate the suggested treatment
+4. **Interactive Application**: Create an interactive application using Gradio or Streamlit. This would provide a user-friendly interface for testing the workflow and could be used for demonstrations or presentations.
+
+5. **User Interface for File Upload**: Develop a simple frontend that allows users to upload a medical record PDF and receive the generated answers. This would make the application more accessible to non-technical users.
