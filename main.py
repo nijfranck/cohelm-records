@@ -23,9 +23,13 @@ def main(input_path, is_directory, models):
         
         json_query = generate_json_query(evaluated_response)
         json_txt = openai_response(json_query, SYSTEM_MSG_JSON)
+
         try:
             json_output = json.loads(json_txt)
             logging.info(f"JSON output: {json_output}")
+            # Ensures directory exists before writing to it
+            if not os.path.exists("outputs/"):
+                os.makedirs("outputs")
             # Save JSON output to a file
             with open(f"outputs/{get_filename(file_path)}.json", "w") as f:
                 json.dump(json_output, f, indent=4)
