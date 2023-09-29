@@ -5,8 +5,7 @@ This project is designed to extract text from medical record PDFs and generate r
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
+- [How to run](#how-to-run)
 - [Project Structure](#project-structure)
 - [Command Line Options](#command-line-options)
 - [Future Improvements](#future-improvements)
