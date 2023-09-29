@@ -74,7 +74,15 @@ class Query:
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__, indent=4)
-    
+
+
+def generate_json_query(text):
+    """Generate a query for the OpenAI API."""
+
+    return f"""Here is the patient's medical record reading: \n" + {text} \n
+    Extract the following information and format the response as a JSON string:
+    {json_block()}
+    """
 
 def json_block():
     medications = [Medication("<medication1>", ["<side effect1>", "<side effect2>"]), Medication("<medication2>", ["<side effect1>", "<side effect2>"])]
@@ -87,12 +95,3 @@ def json_block():
     query = Query(patient_info, question_answers, suggested_treatment)
     json_query = query.to_json()
     return json_query
-
-
-def generate_json_query(text):
-    """Generate a query for the OpenAI API."""
-
-    return f"""Here is the patient's medical record reading: \n" + {text} \n
-    Extract the following information and format the response as a JSON string:
-    {json_block()}
-    """
