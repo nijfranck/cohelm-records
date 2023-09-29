@@ -1,6 +1,6 @@
 # cohelm-records
 
-This project is designed to extract text from medical record PDFs and generate responses using OpenAI's GPT models. It's a part of a take-home challenge and serves as a proof-of-concept for the potential applications of AI in medical data processing.
+This project is designed to extract text from medical record PDFs and generate responses using OpenAI's GPT models. It serves as a proof-of-concept for the potential applications of AI in medical data processing.
 
 ## Table of Contents
 
