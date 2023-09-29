@@ -9,7 +9,7 @@ SYSTEM_MSG_MEDICAL = "You are a helpful medical expert assistant"
 SYSTEM_MSG_JSON = "You are a helpful JSON parser assistant"
 MODEL_NAME = "gpt-3.5-turbo"
 
-def openai_response(text, system_msg):
+def openai_response(text, system_msg, model_name=MODEL_NAME):
     """Get a response from the OpenAI API."""
 
     logging.info("Generating response from OpenAI...")

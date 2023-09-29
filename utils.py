@@ -12,3 +12,7 @@ def extract_text_from_pdf(pdf_path):
         raise FileNotFoundError(f"No file found at {pdf_path}")
     pages = convert_from_path(pdf_path, 500)
     return ''.join(pytesseract.image_to_string(page, lang='eng') + '\n' for page in pages)
+
+
+def get_filename(file_path):
+    return os.path.basename(file_path).split('.')[0]
