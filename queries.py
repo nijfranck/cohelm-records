@@ -90,8 +90,19 @@ def json_block():
                                treatment_plan="<treatment plan>", 
                                allergies=["<allergy1>", "<allergy2>"], 
                                medications=medications)
-    question_answers = [QuestionAnswer("<question1>", "<answer1>", "<confidence1>", "<evidence1>"), QuestionAnswer("<question2>", "<answer2>", "<confidence2>", "<evidence2>")]
-    suggested_treatment = SuggestedTreatment("<Yes/No>", "<confidence>", "<reason>")
+    question_answers = [QuestionAnswer(question, "<answer:Yes/No>", "<confidence:0-10>", "<evidence>") for question in QUESTIONS]
+    suggested_treatment = SuggestedTreatment("<answer:Yes/No>", "<confidence:0-10>", "<reason>")
     query = Query(patient_info, question_answers, suggested_treatment)
     json_query = query.to_json()
     return json_query
+
+def generate_eval_query(text, models, responses):
+    """Generate a query for the OpenAI API."""
+
+    model_responses = "\n".join(f"{i+1}. {r}" for i, r in enumerate(responses))
+
+    return f"""The following model(s) {models} were tasked with generating a response to the following query: \n
+    {generate_medical_record_query(text)}. \n.
+    Your task is to reason step by step through the following answers of the models step by step and provide a final answer in the same format. \n
+    {model_responses} \n.
+    """
